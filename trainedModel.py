@@ -8,6 +8,7 @@ app = Flask(__name__)
 
 # Load your model
 random_forest = joblib.load("random_forest.pkl")
+std_scaler = joblib.load("std_scaler.save")
 
 
 @app.route("/")
@@ -19,7 +20,8 @@ def home():
 def predict():
     data = request.get_json()
     features = data["features"]  # assume a list of feature values
-    prediction = random_forest.predict([features])
+    scaled_features = std_scaler.transform(features)
+    prediction = random_forest.predict([scaled_features])
     return jsonify({"prediction": prediction.tolist()})
 
 
