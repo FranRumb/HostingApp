@@ -20,7 +20,9 @@ def home():
 def predict():
     data = request.get_json()
     features = data["features"]  # assume a list of feature values
-    scaled_features = std_scaler.transform(features)
+    print(f"Received {len(features)} features")
+    print(f"Model expects {random_forest.n_features_in_} features")
+    scaled_features = std_scaler.transform([features])
     prediction = random_forest.predict([scaled_features])
     return jsonify({"prediction": prediction.tolist()})
 
