@@ -22,7 +22,7 @@ def predict():
     features = data["features"]  # assume a list of feature values
     print(f"Received {len(features)} features")
     print(f"Model expects {random_forest.n_features_in_} features")
-    scaled_features = features
+    scaled_features = std_scaler.transform([features])
     prediction = random_forest.predict(scaled_features)
     print("Received features:", data["features"])
     print("Scaled features:", scaled_features)
