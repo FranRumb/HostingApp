@@ -7,7 +7,7 @@ import sklearn
 app = Flask(__name__)
 
 # Load your model
-random_forest = joblib.load("random_forest.pkl")
+random_forest = joblib.load("random_forest_n.pkl")
 std_scaler = joblib.load("std_scaler.save")
 
 
